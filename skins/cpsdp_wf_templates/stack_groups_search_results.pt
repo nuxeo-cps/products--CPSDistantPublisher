@@ -1,0 +1,45 @@
+<tal:comment condition="nothing">
+Macro needs:
+- found: list of found groups results
+</tal:comment>
+<metal:block define-macro="search_results">
+
+<tal:block condition="found">
+
+  <table cellpadding="0" cellspacing="0" border="0" width="100%"
+    summary="groups search result list">
+    <tr>
+      <td width="16"><br /></td>
+      <th style="text-align: left;"
+        i18n:translate="label_group">
+        Group
+      </th>
+    </tr>
+    <tr tal:repeat="group found"><tal:block
+        tal:define="group_id python:group[0]">
+        <td width="16">
+          <input type="checkbox" name="push_ids:list" value=""
+            tal:attributes="value string:partial_group:${group_id};
+            id string:group_${group_id};
+            " />
+        </td>
+        <td>
+          <label tal:content="python:test(group_id.startswith('role:'),
+            cpsmcat(group_id), group_id)"
+            tal:attributes="for string:group_${group_id};">
+            Group
+          </label>
+        </td>
+    </tal:block></tr>
+  </table>
+
+</tal:block>
+
+<tal:block condition="not:found">
+ <p i18n:translate="legend_local_roles_no_results_groups">
+    Sorry, no groups matched your search.
+ </p>
+</tal:block>
+
+</metal:block>
+

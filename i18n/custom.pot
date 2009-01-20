@@ -1,0 +1,135 @@
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+msgid ""
+msgstr ""
+"Project-Id-Version: default\n"
+"POT-Creation-Date: 2004-04-07 16:34default\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Your Name <your@email>\n"
+"Language-Team: Name <email>\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: custom.\n"
+"Language-Name: custom.\n"
+"Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
+
+msgid "heading_distant_submit_of ${item_id}"
+msgstr ""
+
+msgid "distant_states"
+msgstr ""
+
+msgid "distant_publication_validators"
+msgstr ""
+
+msgid "distant_publication_sections_choice"
+msgstr ""
+
+msgid "distant_publication_sections_help"
+msgstr ""
+
+msgid "label_target_server"
+msgstr ""
+
+msgid "server_unreachable"
+msgstr ""
+
+msgid "action_distant_submit"
+msgstr ""
+
+msgid "select_members"
+msgstr ""
+
+msgid "heading_accept_final_distant_publication_of ${item_id}"
+msgstr ""
+
+msgid "heading_reject_publication_of ${item_id}"
+msgstr ""
+
+msgid "heading_accept_partial_publication_of ${item_id}"
+msgstr ""
+
+msgid "heading_accept_publication_of ${item_id}"
+msgstr ""
+
+msgid "distant_publish_ready"
+msgstr ""
+
+msgid "action_distant_publish"
+msgstr ""
+
+msgid "action_distant_reject"
+msgstr ""
+
+msgid "action_distant_accept"
+msgstr ""
+
+msgid "action_distant_partial_accept"
+msgstr ""
+
+msgid "action_view_delegatees"
+msgstr ""
+
+msgid "distant_pending"
+msgstr ""
+
+msgid "manage_delegatees"
+msgstr ""
+
+msgid "copy_distant_submit"
+msgstr ""
+
+msgid "distant_submit"
+msgstr ""
+
+msgid "distant_accept"
+msgstr ""
+
+msgid "distant_publishing"
+msgstr ""
+
+msgid "help_accept_partial_publication"
+msgstr ""
+
+msgid "help_accept_distant_publication"
+msgstr ""
+
+msgid "help_reject_distant_publication"
+msgstr ""
+
+msgid "button_distant_unpublish_document"
+msgstr ""
+
+msgid "unknown_distant_state"
+msgstr ""
+
+msgid "legend_local_roles_no_results_groups"
+msgstr ""
+
+msgid "legend_local_roles_no_results_members"
+msgstr ""
+
+msgid "psm_miss_push_ids"
+msgstr ""
+
+msgid "psm_miss_distant_section"
+msgstr ""
+
+msgid "button_validate"
+msgstr ""
+
+msgid "cps_empty_search"
+msgstr ""
+
+msgid "distant_validators"
+msgstr ""
+
+msgid "distant_unpublish"
+msgstr ""
+
+msgid "cps_couldnot_unpublish"
+msgstr ""
+

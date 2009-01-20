@@ -1,0 +1,35 @@
+<!--
+State transition form macro.
+
+ATTENTION:
+To be used this macro needs that a variable workflow_action_script be defined.
+-->
+<!-- $Id$ -->
+
+<metal:block define-macro="transition_form">
+  <form class="workflow" method="post" action="a_script_path_that_will_be_replaced"
+    tal:attributes="action string:${proxy/absolute_url}/${workflow_action_script};
+    onsubmit python:'return validateRequiredFields([\'comments\'], [\'%s\'], \'%s\')'
+    % (cpsmcat('transition_comments'), cpsmcat('description_field_required'))
+    ">
+    <metal:block metal:define-slot="fields">
+      <!-- Put your fields here -->
+    </metal:block>
+    <dl>
+      <dt><label class="required" for="comments"
+          i18n:translate="transition_comments">Comments</label></dt>
+      <dd>
+        <textarea name="comments" id="comments" cols="60" rows="3"
+          tal:content="nothing">
+        </textarea>
+      </dd>
+    </dl>
+    <p>
+      <metal:block metal:define-slot="button">
+        <!-- Put your buttons here: these are examples -->
+        <input type="hidden" name="workflow_action" value="transition" />
+        <input type="submit" value="button_publish" i18n:attributes="value" />
+      </metal:block>
+    </p>
+  </form>
+</metal:block>

@@ -1,0 +1,40 @@
+<dtml-comment>
+CPSDistantPublisher JavaScript functions
+$Id$
+</dtml-comment>
+
+//  ping-pong reload, will do better (ajax) later
+
+
+function reloadActiveServer(url) {
+
+  selector = document.getElementById("distant_site_name");
+  active_server = selector.value;
+
+  var poster = new Array();
+  poster.push("reloadActiveServer?active_server=" + encodeURIComponent(active_server));
+  poster.push("url=" + encodeURIComponent(url));
+  poster = poster.join("&");
+
+  self.location.href = poster;
+}
+
+
+function retrieveSelectedPushIds() {
+  var delegatees_search_form = document.forms['delegatees_search_form'];
+  var assigment_form = document.forms['delegatees_assignment_form'];
+  var inputs = assigment_form.getElementsByTagName('input');
+
+  for (var i = 0; i < inputs.length; i++) {
+    var input = inputs[i];
+    if (input.className != 'push-id-selector')
+      continue;
+    if (!input.checked)
+      continue;
+    new_node = document.createElement('input');
+    new_node.type = 'hidden';
+    new_node.name = input.name;
+    new_node.value = input.value;
+    delegatees_search_form.appendChild(new_node);
+  }
+}

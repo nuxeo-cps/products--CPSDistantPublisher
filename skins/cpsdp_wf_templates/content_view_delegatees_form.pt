@@ -1,0 +1,38 @@
+<metal:html use-macro="here/content_lib_master/macros/master">
+<metal:block fill-slot="header" />
+<metal:main fill-slot="main">
+<metal:std_main use-macro="here/content_lib_std_main/macros/std_main">
+<metal:title fill-slot="title">
+    <tal:block i18n:translate="distant_validators">Distant reviewers</tal:block>
+</metal:title>
+<metal:help fill-slot="help" />
+<metal:main fill-slot="main"
+  tal:define="global info python:proxy.getContentInfo(proxy, doc=doc, level=3);
+              workflow_action_script string:content_assignment_modify;
+              workflow_action string:manage_delegatees;
+              workflow_action_form string:content_manage_delegatees_form;
+              stack python:here.portal_workflow.getStackFor(here, 'distant_reviewers')
+             ">
+  <tal:block condition="not:stack">
+    <span i18n:translate="no_delegatees">No delegatees for this publication</span>
+  </tal:block>
+  <tal:block condition="stack">
+    <tal:block tal:define="delegatees python:stack.getStackContent('object', context=context)">
+      <tal:block tal:condition="not:delegatees">
+        <span i18n:translate="no_delegatees">No delegatees for this publication</span>
+      </tal:block>
+      <tal:block tal:condition="delegatees">
+        <ul tal:repeat="delegatee delegatees">
+          <li>
+            <strong tal:content="delegatee/getMemberId"/>&#160;
+              <img src="has_not_validated.png" tal:condition="not:delegatee/hasValidated"/>
+              <img src="has_validated.png" tal:condition="delegatee/hasValidated"/>
+          </li>
+        </ul>
+      </tal:block>
+    </tal:block>
+  </tal:block>
+</metal:main>
+</metal:std_main>
+</metal:main>
+</metal:html>

@@ -1,0 +1,38 @@
+<metal:html use-macro="here/content_lib_master/macros/master">
+
+<metal:block fill-slot="header" />
+
+<metal:main fill-slot="main">
+<metal:std_main use-macro="here/content_lib_std_main/macros/std_main">
+
+<metal:title fill-slot="title" i18n:translate="">
+  heading_reject_publication_of
+  <span tal:replace="here/title_or_id" i18n:name="item_id">Item</span>
+</metal:title>
+
+<metal:help fill-slot="help">
+  <span i18n:translate="help_reject_distant_publication">
+    Reject distant publication of this item
+  </span>
+</metal:help>
+
+<metal:main fill-slot="main"
+            tal:define="info python:proxy.getContentInfo(proxy, doc=doc, level=3);
+                        workflow_action_script string:content_status_stack_modify;">
+  <br />
+  <metal:block use-macro="here/content_lib_status/macros/status" /><br /><br />
+  <metal:block use-macro="here/content_lib_transition_form/macros/transition_form">
+    <metal:block fill-slot="button">
+      <input type="hidden" name="workflow_action" value="distant_reject" />
+      <input type="submit" class="standalone" value="button_reject_publication"
+        i18n:attributes="value" />
+      <input type="button" class="context" onClick="history.back()"
+        value="button_cancel" i18n:attributes="value" />
+    </metal:block>
+  </metal:block>
+  <metal:block use-macro="here/content_lib_states/macros/states" /><br />
+  <metal:block use-macro="here/content_lib_history/macros/history" />
+</metal:main>
+</metal:std_main>
+</metal:main>
+</metal:html>

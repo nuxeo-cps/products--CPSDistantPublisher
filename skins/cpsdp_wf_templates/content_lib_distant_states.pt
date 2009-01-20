@@ -1,0 +1,63 @@
+<!-- a content_lib macro -->
+<!-- $Id$ -->
+
+<!-- Display authorized proxies states for a document
+  require getContentInfo 2
+-->
+
+<metal:block define-macro="distant_states"
+  tal:define="items python:info['states']">
+    <form method="post" action="unpublish_distant_publication">
+      <div class="group">
+      <p tal:condition="not:items"
+        i18n:translate="info_no_published_revisions_of_this_document">
+        There aren't any published revisions of this document.
+      </p>
+      <tal:block condition="items">
+        <table class="history listing" summary="publication state">
+          <thead>
+            <tr>
+              <td/>
+              <td i18n:translate="label_date">Date</td>
+              <td i18n:translate="label_revision">Version</td>
+              <td i18n:translate="label_language">Langue</td>
+              <td i18n:translate="label_status">Status</td>
+              <td i18n:translate="label_location">Location</td>
+            </tr>
+          </thead>
+          <tbody>
+        <tr tal:repeat="item items"
+            tal:attributes="class python:test(repeat['item'].odd(), 'odd', 'even')">
+              <td>
+                <input type="checkbox" name="distant_rpaths:list"
+                        tal:attributes="id item/rpath;
+                                        value item/rpath"/>
+              </td>
+
+              <td tal:content="item/time_str" i18n:translate=""/>
+              <td tal:content="item/rev" i18n:translate=""/>
+              <td tal:content="string:label_language_${item/lang}" i18n:translate=""/>
+              <td tal:define="item_path item/rpath">
+                <span tal:attributes="class item/review_state"
+                  tal:content="item/review_state" i18n:translate=""/>
+                <input type="hidden" tal:attributes="name string:state_${item_path};
+                                                     value item/review_state"/>
+              </td>
+              <td>
+                &lt;<tal:block tal:replace="item/rpath"/>&gt;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </tal:block>
+    </div>
+    <tal:block tal:condition="items">
+      <input type="hidden" name="distant_server"
+              tal:attributes="value selected_server"/>
+      <input type="hidden" name="doc_rpath"
+              tal:attributes="value doc_rpath"/>
+      <input type="submit" class="standalone" value="button_distant_unpublish_document"
+            i18n:attributes="value" />
+    </tal:block>
+  </form>
+</metal:block>

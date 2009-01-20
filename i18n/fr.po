@@ -1,0 +1,296 @@
+# translation of fr.po to Francais
+# Gettext Message File for default.
+# Your Name <your@email>, Year
+# Tarek Ziadé <tz@nuxeo.com>, 2004.
+msgid ""
+msgstr ""
+"Project-Id-Version: fr\n"
+"POT-Creation-Date: 2006-01-31 16:57default\n"
+"PO-Revision-Date: 2004-09-13 23:12+0200\n"
+"Last-Translator: Tarek Ziadé <tz@nuxeo.com>\n"
+"Language-Team: Francais <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: KBabel 1.3\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
+"Domain: default\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Preferred-Encodings: utf-8\n"
+
+#.   <h2 content="current_var_id">
+#.       Stack content
+#.     </h2>
+#: from ../skins/cpsdp_wf_templates/delegatees_lib.pt
+msgid "Stack content"
+msgstr ""
+
+#.   <input type="submit" class="standalone" value="button_distant_unpublish_document" />
+#: from ../skins/cpsdp_wf_templates/content_lib_distant_states.pt
+msgid "button_distant_unpublish_document"
+msgstr "Dépublication distante"
+
+#.   <input type="submit" value="button_push_delegatees" />
+#: from ../skins/cpsdp_wf_templates/delegatees_lib.pt
+#, fuzzy
+msgid "button_push_delegatees"
+msgstr "Visualiser les intermédiaires"
+
+#.   <input type="submit" class="standalone" value="button_validate" />
+#.   <input condition="python:distant_stree!=[]" type="submit" class="standalone" value="button_validate" />
+#: from ../skins/cpsdp_wf_templates/content_distant_accept_form.pt
+#: ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "button_validate"
+msgstr "Valider"
+
+#.   <h1>
+#.               Distant portal sections selection
+#.             </h1>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "distant_publication_sections_choice"
+msgstr "Choix des rubriques du site distant"
+
+#.   <p>A copy of this document will be
+#.                 create in each of this section with <strong>published</strong> state.
+#.                 Readers of these sections will then be able to read it.</p>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "distant_publication_sections_help"
+msgstr ""
+"Une copie du document sera créé dans chacune de ces rubriques avec comme "
+"statut <strong>publié</strong>. Les lecteurs de ces rubriques pourront "
+"alors le consulter."
+
+#.   <h1>
+#.               List of members involved in distant publication validation
+#.             </h1>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "distant_publication_validators"
+msgstr "Liste des membres participant à la validation du document"
+
+#.   <h1>Distant publication state</h1>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "distant_states"
+msgstr "Etat de publication distante"
+
+#.   <block>Distant reviewers</block>
+#: from ../skins/cpsdp_wf_templates/content_view_delegatees_form.pt
+msgid "distant_validators"
+msgstr "Intermédiaires pour la validation distante"
+
+#.   <title fill-slot="title">
+#.     heading_accept_final_distant_publication_of
+#.     ${item_id (tal replace="here/title_or_id")}
+#.   </title>
+#: from ../skins/cpsdp_wf_templates/content_distant_publish_form.pt
+msgid "heading_accept_final_distant_publication_of ${item_id}"
+msgstr ""
+"Publier ou rejeter la publication distante de <strong>${item_id}</strong>"
+
+#.   <title fill-slot="title">
+#.     heading_accept_partial_publication_of
+#.     ${item_id (tal replace="here/title_or_id")}
+#.   </title>
+#: from ../skins/cpsdp_wf_templates/content_distant_partial_accept_form.pt
+msgid "heading_accept_partial_publication_of ${item_id}"
+msgstr ""
+"Acceptation partielle de <strong>${item_id}</strong> pour publication "
+"distante"
+
+#.   <h2 condition="not:searching">
+#.     Assign to the workflow: search members
+#.   </h2>
+#: from ../skins/cpsdp_wf_templates/delegatees_lib.pt
+msgid "heading_content_assign_search_members"
+msgstr ""
+
+#.   <h2 condition="searching">
+#.     Assign to the workflow: search results
+#.   </h2>
+#: from ../skins/cpsdp_wf_templates/delegatees_lib.pt
+msgid "heading_content_assign_search_results"
+msgstr ""
+
+#.   <title fill-slot="title">
+#.           heading_distant_submit_of
+#.           ${item_id (tal replace="here/title_or_id")}
+#.         </title>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "heading_distant_submit_of ${item_id}"
+msgstr "Soumettre ${item_id} à validation pour publication sur un site distant"
+
+#.   <span>Accept publication of this
+#.       item, this will make it available to section's readers</span>
+#: from ../skins/cpsdp_wf_templates/content_distant_accept_form.pt
+#: ../skins/cpsdp_wf_templates/content_distant_publish_form.pt
+msgid "help_accept_distant_publication"
+msgstr ""
+"Accepter la publication distante de cet élément, pour le rendre visible dans "
+"la section distante"
+
+#.   <span>Accept publication of this
+#.       item, this will make it available to distant section's readers</span>
+#: from ../skins/cpsdp_wf_templates/content_distant_partial_accept_form.pt
+msgid "help_accept_partial_publication"
+msgstr ""
+"Accepter la publication distante de cet élément, pour le rendre visible dans "
+"la section distante, si tous les intermédiaires acceptent"
+
+#.   <span>
+#.       Reject distant publication of this item
+#.     </span>
+#: from ../skins/cpsdp_wf_templates/content_distant_reject_form.pt
+msgid "help_reject_distant_publication"
+msgstr "Rejeter la publication distante de cet élément"
+
+#.   <p>
+#.         Below, stands the members / groups which have been already added to this
+#.         workflow stack.
+#.       </p>
+#: from ../skins/cpsdp_wf_templates/stack_hierarchical_method.pt
+#: ../skins/cpsdp_wf_templates/stack_simple_method.pt
+#, fuzzy
+msgid "label_delegatees_below"
+msgstr "gestion des intermédiaires"
+
+#.   <block>
+#.         Current level delegatees are highlighted
+#.       </block>
+#: from ../skins/cpsdp_wf_templates/stack_hierarchical_method.pt
+msgid "label_delegatees_current_level_delegatees_highlighted"
+msgstr ""
+
+#.   <h2>
+#.         Select members:
+#.       </h2>
+#: from ../skins/cpsdp_wf_templates/delegatees_lib.pt
+#, fuzzy
+msgid "label_delegatees_select_members"
+msgstr "Séléctionner les membres participant à la validation"
+
+#.   <strong>
+#.         There are no delegatees within this workflow stack yet
+#.       </strong>
+#: from ../skins/cpsdp_wf_templates/stack_hierarchical_method.pt
+#: ../skins/cpsdp_wf_templates/stack_simple_method.pt
+msgid "label_delegatees_stack_empty"
+msgstr ""
+
+#.   <block>
+#.                     User in charge
+#.                   </block>
+#: from ../skins/cpsdp_wf_templates/stack_hierarchical_method.pt
+msgid "label_delegatees_user_in_charge"
+msgstr ""
+
+#.   <option attributes="selected python:search_param=='fullname'" value="fullname">Full name</option>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+#: ../skins/cpsdp_wf_templates/delegatees_lib.pt
+msgid "label_full_name"
+msgstr "Nom complet d'utilisateur"
+
+#.   <h2>
+#.         Reviewers
+#.       </h2>
+#: from ../skins/cpsdp_wf_templates/layout_schedule_view.pt
+#, fuzzy
+msgid "label_reviewers"
+msgstr "Serveur"
+
+#.   <p>
+#.       Sorry, no members matched your search.
+#.    </p>
+#: from ../skins/cpsdp_wf_templates/stack_members_search_results.pt
+msgid "legend_local_roles_no_results_members"
+msgstr "Aucun membre trouvé."
+
+#.   <span>No delegatees for this publication</span>
+#: from ../skins/cpsdp_wf_templates/content_view_delegatees_form.pt
+#, fuzzy
+msgid "no_delegatees"
+msgstr "gestion des intermédiaires"
+
+#.   <h2>
+#.                   Select members:
+#.                   </h2>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "select_members"
+msgstr "Séléctionner les membres participant à la validation"
+
+#.   <div class="message">
+#.                   Could not reach the server
+#.               </div>
+#: from ../skins/cpsdp_wf_templates/content_distant_submit_form.pt
+msgid "server_unreachable"
+msgstr "Serveur inaccessible"
+
+msgid "label_target_server"
+msgstr "Serveur"
+
+msgid "action_distant_submit"
+msgstr "Proposer une publication distante"
+
+msgid "heading_reject_publication_of ${item_id}"
+msgstr "Rejeter la publication distante de <strong>${item_id}</strong>"
+
+msgid "heading_accept_publication_of ${item_id}"
+msgstr "Accepter la publication distante de <strong>${item_id}</strong>"
+
+msgid "distant_publish_ready"
+msgstr "Prêt pour publication distante"
+
+msgid "action_distant_publish"
+msgstr "Publier sur le site distant"
+
+msgid "action_distant_reject"
+msgstr "Rejeter la publication distante"
+
+msgid "action_distant_accept"
+msgstr "Valider la publication distante"
+
+msgid "action_distant_partial_accept"
+msgstr "Accepter la publication distante"
+
+msgid "action_view_delegatees"
+msgstr "Visualiser les intermédiaires"
+
+msgid "distant_pending"
+msgstr "Publication distante en soumission"
+
+msgid "manage_delegatees"
+msgstr "Gestion des intermédiaires"
+
+msgid "copy_distant_submit"
+msgstr "Copie pour soumission distante"
+
+msgid "distant_submit"
+msgstr "Soumission distante"
+
+msgid "distant_accept"
+msgstr "Soumission distante acceptée"
+
+msgid "distant_publishing"
+msgstr "Publication distante"
+
+msgid "unknown_distant_state"
+msgstr "Etat distant inconnu (supprimé?)"
+
+msgid "legend_local_roles_no_results_groups"
+msgstr "Aucun groupe trouvé."
+
+msgid "psm_miss_push_ids"
+msgstr "Aucun membre sélectionné."
+
+msgid "psm_miss_distant_section"
+msgstr "Aucun section distante sélectionnée."
+
+msgid "cps_empty_search"
+msgstr "Veuillez saisir au moins un critère de recherche"
+
+msgid "distant_unpublish"
+msgstr "Dépublication à distance"
+
+msgid "cps_couldnot_unpublish"
+msgstr ""
+"Impossible de supprimer la version distante, vérifier vos droits sur le "
+"portail distant"

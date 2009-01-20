@@ -1,0 +1,237 @@
+<metal:html use-macro="here/content_lib_master/macros/master">
+
+  <metal:block fill-slot="header"/>
+
+  <metal:main fill-slot="javascript_head_slot">
+    <script type="text/javascript"
+            tal:attributes="src string:${base_url}cpsdp_functions.js"></script>
+  </metal:main>
+
+  <metal:main fill-slot="main">
+
+    <metal:std_main use-macro="here/content_lib_std_main/macros/std_main">
+
+      <metal:title fill-slot="title" i18n:translate="">
+        heading_distant_submit_of
+        <span tal:replace="here/title_or_id" i18n:name="item_id">Item</span>
+      </metal:title>
+
+      <metal:help fill-slot="help">
+
+      </metal:help>
+
+      <metal:main fill-slot="main"
+                  tal:define="global info python:proxy.getContentInfo(proxy, doc=doc, level=3);
+                            workflow_action_script string:content_status_stack_modify;
+                            workflow_action string:copy_distant_submit;
+                            workflow_action_form string:content_distant_submit_form;
+                            pdp context/portal_distant_publisher;
+                            doc_rpath python:info['rpath'];
+                            doc_type python:info['type'];
+                            publish_wf_action string:distant_publish;
+                            current_var_id string:distant_reviewers;
+                            submit_wf_action string:distant_submit;
+                            servers context/portal_remote_controller_client/listServers;
+                            prmc context/portal_remote_controller_client;
+                            selected_server python:prmc.getActiveServer(force=True);
+                            search_param python:request.get('search_param', '');
+                            search_term python:request.get('search_term', '');
+                            push_ids python:request.get('push_ids', []);
+                            searching search_param;
+                            found python:searching and here.stack_localrole_search(
+                            search_param, search_term, push_ids, request);
+                            distant_stree python:pdp.getDistantSectionsTree(selected_server);
+                            workspace_rpath python:'/'.join(doc_rpath.split('/')[:-1])">
+
+          <div class="group">
+          <h1 i18n:translate="distant_publication_validators">
+            List of members involved in distant publication validation
+          </h1>
+          <br/>
+            <!-- Search -->
+
+            <form name="delegatees_search_form" method="post"
+                tal:attributes="action request/URL0">
+              <table summary="search layout">
+                <tr>
+                  <th i18n:translate="label_local_roles_search_by">Search by</th>
+                  <td>
+                    <select name="search_param">
+                    <option i18n:translate="label_full_name"
+                            tal:attributes="selected python:search_param=='fullname'"
+                            value="fullname">Full name</option>
+                    <option i18n:translate="label_group_name"
+                            tal:attributes="selected python:search_param=='groupname'"
+                            value="groupname" >Group name</option>
+                    <option i18n:translate="label_user_email"
+                            tal:attributes="selected python:search_param=='email'"
+                            value="email">Email address</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th i18n:translate="label_local_roles_search_term">Search Term</th>
+                  <td>
+                    <metal:block
+                        use-macro="here/delegatees_lib/macros/wf_information" />
+                    <input type="text" name="search_term" size="30"
+                        tal:attributes="value search_term|nothing" />
+                    <input type="submit" name="role_submit" onclick="retrieveSelectedPushIds()"
+                        value="button_search" i18n:attributes="value" />
+                  </td>
+                </tr>
+              </table>
+            </form>
+
+          <!-- End search -->
+          </div>
+          <form method="post" action="content_assignment_modify"
+                name="delegatees_assignment_form"
+                tal:attributes="action string:${here/absolute_url}/content_status_stack_modify">
+
+            <!-- Search results -->
+            <tal:block condition="searching">
+              <tal:block define="
+                search_members python:search_param and search_param in ('fullname', 'email');
+                search_groups python:search_param and search_param == 'groupname';
+                ">
+                <tal:block condition="not:found">
+                  <tal:block condition="search_members">
+                    <metal:block
+                       use-macro="here/stack_members_search_results/macros/search_results" />
+                  </tal:block>
+                <tal:block condition="search_groups">
+                  <metal:block use-macro="here/stack_groups_search_results/macros/search_results" />
+                </tal:block>
+              </tal:block>
+              <tal:block condition="found">
+                <h2 i18n:translate="select_members">
+                Select members:
+                </h2>
+                <div class="group">
+                  <metal:block
+                      use-macro="here/stack_members_search_results/macros/search_results" />
+                </div>
+                <metal:block use-macro="here/delegatees_lib/macros/delegatees_insert" />
+              </tal:block>
+            </tal:block>
+
+          </tal:block>
+          <!-- End search results -->
+          <input type="hidden" name="initial_transition"
+            tal:attributes="value submit_wf_action"/>
+
+          <input type="hidden" name="workflow_action_form"
+              tal:attributes="value workflow_action_form"/>
+
+          <input type="hidden" name="distant_portal"
+              tal:attributes="value selected_server"/>
+
+          <input type="hidden" name="dest_container"
+                 tal:attributes="value workspace_rpath"/>
+
+          <input type="hidden" name="workflow_action" value="submit"
+                tal:attributes="value workflow_action" />
+
+          <div class="group">
+          <h1 i18n:translate="distant_publication_sections_choice">
+            Distant portal sections selection
+          </h1>
+
+          <p i18n:translate="distant_publication_sections_help">A copy of this document will be
+              create in each of this section with <strong>published</strong> state.
+              Readers of these sections will then be able to read it.</p>
+
+          <div>
+            <strong>Site:</strong>
+            <select id="distant_site_name" name="distant_site_name"
+                        tal:attributes="onchange
+                        python:'reloadActiveServer(\'content_distant_submit_form\')'">
+              <tal:block tal:repeat='server servers'>
+                <option tal:attributes="value python:server[0];
+                                            selected  python:server[0] == selected_server"
+                            tal:content="python:server[0]"/>
+              </tal:block>
+            </select>
+          </div>
+
+          <tal:block tal:condition="python:distant_stree==[]">
+            <div class="message" i18n:translate="server_unreachable">
+                Could not reach the server
+            </div>
+          </tal:block>
+          <div>
+            <table width="100%" cellspacing="0" cellpadding="2"
+                    summary="sections listing">
+              <tr>
+                <th width="30%" i18n:translate="listingheader_sections">Section</th>
+                <th/>
+              </tr>
+              <tal:block repeat="section distant_stree">
+              <tr tal:define="can_publish section/can_publish;
+                              can_submit section/can_submit;
+                              clone_wf_action python:test(can_publish, publish_wf_action,
+                                                          submit_wf_action)"
+                tal:condition="python:can_publish or can_submit"
+                tal:attributes="class python:test(repeat['section'].even(), 'even', 'odd')">
+
+                <td nowrap="nowrap">
+                <input type="hidden"
+                    tal:attributes="value can_submit;
+                                    id python:'can_submit_'+section['rpath']"/>
+                <input type="checkbox" id="" name="" value="" class="noborder"
+                        tal:attributes="value section/rpath;
+                                        id section/rpath;
+                                        name clone_wf_action;" />
+                <span tal:replace="structure
+                                    python:'&nbsp;'*4*section['depth']">&nbsp;</span>
+                <label tal:content="structure section/short_title"
+                        tal:attributes="for section/rpath">Section id</label>
+                <em i18n:translate="label_requires_approval"
+                    tal:condition="not:can_publish">(requires approval)</em>
+                </td>
+                <td>
+                <tal:block repeat="item info/states">
+                    <tal:block condition="python:item['rpath'] == section['rpath']"
+                            define="info item;
+                                    status_short_fmt not:nothing;">
+                    <metal:block use-macro="here/content_lib_status/macros/status" /><br />
+
+                    </tal:block>
+                </tal:block>
+                </td>
+              </tr>
+              </tal:block>
+            </table>
+          </div>
+          </div>
+
+
+        <tal:block define="comment request/comment|nothing">
+        <div class="row">
+          <div class="label">
+            <span i18n:translate="transition_comments">Comments</span>
+          </div>
+          <div class="field">
+            <textarea name="comment" cols="60" rows="5" wrap="soft" style="width: 100%"
+                      tal:content="comment">
+            </textarea>
+          </div>
+        </div>
+        </tal:block>
+        <input type="submit" class="standalone" value="button_validate"
+            i18n:attributes="value" tal:condition="python:distant_stree!=[]"/>
+        <input type="button" class="context" onClick="history.back()"
+            value="button_cancel" i18n:attributes="value" />
+      </form>
+    <h1 i18n:translate="distant_states">Distant publication state</h1>
+    <tal:block tal:define="states python:pdp.getDistantPublishStatus(selected_server, context);
+                           info python:{'states': states}">
+        <metal:block use-macro="here/content_lib_distant_states/macros/distant_states" />
+    </tal:block>
+
+    <metal:block use-macro="here/content_lib_history/macros/history" />
+</metal:main>
+</metal:std_main>
+</metal:main>
+</metal:html>
